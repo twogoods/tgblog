@@ -1,0 +1,65 @@
+body {
+	background-image: url("http://ww2.sinaimg.cn/large/62755f82gw1ejqgbgc1hwj219s0wdti5.jpg");
+	background-repeat: repeat;
+	/*
+	background-color: #e3e3e3;
+	*/
+}
+
+.container{
+	position: relative;
+	height: auto;
+	height: 100%;
+}
+.userinfo{
+	top:100px;
+	position: fixed;
+	padding: 1%;
+	background-color: #ECECEC;
+	border-radius:25px;
+	padding-bottom:15%;
+	/*
+	padding: 1%;
+	*/
+}
+.userinfo a{
+	text-align: center;
+}
+.userinfo p{
+	text-align: center;
+}
+.maininfo{
+	top:100px;
+	/*
+	height: 80%;
+	padding-bottom:80%;
+	margin-left: 1%;
+	*/
+}
+.textwrite{
+	height: 500px;
+	padding: 10px;
+}
+.textview{
+	background-color: #ECECEC;
+	border-radius:18px;
+	padding: 10px;
+}
+.home-footer{
+	position: fixed;
+	bottom: 0;
+	padding-left: 20px;
+	padding-bottom: 10px;
+	text-align: center;
+}
+.alert{
+	display: none;
+}
+.center{
+	text-align: center;
+}
+button.view{
+	float: right;
+	margin: 10px;
+}
+

@@ -1,0 +1,235 @@
+<!doctype html>
+	/*
+                           _ooOoo_
+                          o8888888o
+                          88" . "88
+                          (| -_- |)
+                          O\  =  /O
+                       ____/`---'\____
+                     .'  \\|     |//  `.
+                    /  \\|||  :  |||//  \
+                   /  _||||| -:- |||||-  \
+                   |   | \\\  -  /// |   |
+                   | \_|  ''\---/''  |   |
+                   \  .-\__  `-`  ___/-. /
+                 ___`. .'  /--.--\  `. . __
+              ."" '<  `.___\_<|>_/___.'  >'"".
+             | | :  `- \`.;`\ _ /`;.`/ - ` : | |
+             \  \ `-.   \_ __\ /__ _/   .-` /  /
+        ======`-.____`-.___\_____/___.-`____.-'======
+                           `=---='
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                 佛祖保佑       永无BUG
+ */
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="styles/tg_my.css"/>
+	<link rel="stylesheet" type="text/css" href="styles/animate.css"/>
+
+	<style type="text/css">
+		*{
+			-webkit-animation-duration: 2s;
+			-webkit-animation-delay: 0.1s;
+			-webkit-animation-iteration-count: 2;
+		}
+		#myModal{
+			-webkit-animation-duration: 2s;
+			-webkit-animation-delay: 0.1s;
+			-webkit-animation-iteration-count: 1;
+		}
+	</style>
+
+	<script type="text/javascript" src="scripts/jquery.min.js"></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+	<script type="text/javascript" src="scripts/tg.js"></script>
+	<!--
+	<script>
+		$(function () {
+			$('[data-toggle="tooltip"]').tooltip();
+			$("#login").click(function(){
+				$('#username').popover('show');
+				alert("haha");
+			});
+		})
+	</script>
+-->
+</head>
+
+<body data-spy="scroll" data-target="#navbar-example">
+
+
+	<!-- 导航条 -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Twogoods</a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">主页<span class="sr-only">(current)</span></a></li>
+					<li><a href="#" id="high">high一下</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">友情链接 <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Action</a></li>
+						</ul>
+					</li>
+				</ul>
+				<form class="navbar-form navbar-right" role="search">
+					<button type="button" id="log" class="btn btn-primary" data-toggle="modal" data-target="#myModal">登录</button>
+				</form>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
+
+
+
+	<!--巨幕-->
+	<div class="jumbotron">
+		<div class="container">
+			<h1>三班头像墙</h1>
+			<p>这里是我们的三班的大本营，在这里你能找到我们的每一个成员，绝对的体育迷，你可以和我聊梅西C罗也可以跟我说科比詹姆斯，当然你们硬是要和我聊国足（←_←）的话，我还是会原谅你们的哈</p>
+		</div>
+	</div>
+
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-4" id="left">
+				<a href="http://twogoods.github.io" class="center-block" target="_Blank" >
+					<img src="images/image.png" class="img-circle center-block"
+					data-toggle="tooltip" data-placement="right" title="陈歆"/>
+				</a>
+				<p class="center-block">绝对的体育迷，你可以和我聊梅西C罗也可以跟我说科比詹姆斯，当然你们硬是要和我聊国足（←_←）的话，我还是会原谅你们的哈</p>
+			</div>
+			<div class="col-md-4" id="center">
+				<img src="images/image.png" class="img-circle center-block"/>
+				<p class="center-block">绝对的体育迷，你可以和我聊梅西C罗也可以跟我说科比詹姆斯，当然你们硬是要和我聊国足（←_←）的话，我还是会原谅你们的哈</p>
+			</div>
+			<div class="col-md-4" id="right">
+				<img src="images/image.png" class="img-circle center-block"/>
+				<p class="center-block">绝对的体育迷，你可以和我聊梅西C罗也可以跟我说科比詹姆斯，当然你们硬是要和我聊国足（←_←）的话，我还是会原谅你们的哈</p>
+			</div>
+		</div>
+		<hr>
+
+		<div class="row">
+			<div class="col-md-4" id="center">
+				<a href="http://twogoods.github.io" class="center-block" target="_Blank" >
+					<img src="images/lhs.jpg" class="img-circle center-block"
+					data-toggle="tooltip" data-placement="right" title="卢豪帅"/>
+				</a>
+				<p class="center-block">绝对的体育迷，你可以和我聊梅西C罗也可以跟我说科比詹姆斯，当然你们硬是要和我聊国足（←_←）的话，我还是会原谅你们的哈</p>
+			</div>
+			<div class="col-md-4" id="center">
+				<img src="images/ss.jpg" class="img-circle center-block"/>
+				<p class="center-block">绝对的体育迷，你可以和我聊梅西C罗也可以跟我说科比詹姆斯，当然你们硬是要和我聊国足（←_←）的话，我还是会原谅你们的哈</p>
+			</div>
+			<div class="col-md-4" id="center">
+				<img src="images/lxb.jpg" class="img-circle center-block"/>
+				<p class="center-block">绝对的体育迷，你可以和我聊梅西C罗也可以跟我说科比詹姆斯，当然你们硬是要和我聊国足（←_←）的话，我还是会原谅你们的哈</p>
+			</div>
+		</div>
+		<hr>
+
+
+
+
+		<div class="row">
+			<div class="col-md-4" id="opacityleft">
+				<img src="images/image.png" class="img-circle center-block" alt="Responsive image"/><br>
+				<p class="center-block">haha</p>
+				<a href="" class="center-block">twogoods</a>
+			</div>
+			<div class="col-md-4" id="opacitycenter">
+				<img src="images/image.png" class="img-circle center-block" alt="Responsive image"/>
+			</div>
+			<div class="col-md-4" id="opacityright">
+				<img src="images/image.png" class="img-circle center-block" alt="Responsive image"/>
+			</div>
+		</div>
+		<hr>
+
+		<div class="row">
+			<div class="col-md-4" id="opacityleft">
+				<img src="images/image.png" class="img-circle center-block" alt="Responsive image"/><br>
+				<p class="center-block">haha</p>
+				<a href="" class="center-block">twogoods</a>
+			</div>
+			<div class="col-md-4" id="opacitycenter">
+				<img src="images/image.png" class="img-circle center-block" alt="Responsive image"/>
+			</div>
+			<div class="col-md-4" id="opacityright">
+				<img src="images/image.png" class="img-circle center-block" alt="Responsive image"/>
+			</div>
+		</div>
+		<hr>
+
+		<div class="row">
+			<div class="col-md-4" id="opacityleft">
+				<img src="images/image.png" class="img-circle center-block" alt="Responsive image"/><br>
+				<p class="center-block">绝对的体育迷，你可以和我聊梅西C罗也可以跟我说科比詹姆斯，当然你们硬是要和我聊国足（←_←）的话，我还是会原谅你们的哈</p>
+				<a href="" class="center-block">twogoods</a>
+			</div>
+			<div class="col-md-4" id="opacitycenter">
+				<img src="images/image.png" class="img-circle center-block" alt="Responsive image"/>
+			</div>
+			<div class="col-md-4" id="opacityright">
+				<img src="images/image.png" class="img-circle center-block" alt="Responsive image"/>
+			</div>
+		</div>
+		<hr>
+		<footer>
+			<p>&copy; Twogoods 2015 Copyleft</p>
+		</footer>
+	</div><!-- container-->
+
+	<!--弹出的登录框-->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">欢迎登录</h4>
+				</div>
+				<div class="modal-body">
+					<div class="alert alert-danger alert-dismissible" role="alert" id="alertwarning">
+						<span id="warningcontext">haha</span>
+					</div>
+					<!--表单-->
+					<form class="form-horizontal" role="form">
+						<div class="form-group">
+							<label for="firstname" class="col-sm-2 control-label">账号/邮箱</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" id="username" name="username" placeholder="请输入账号"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="lastname" class="col-sm-2 control-label">密码</label>
+							<div class="col-sm-6">
+								<input type="password" class="form-control" id="password" name="password" placeholder="请输入密码"/>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="submit" class="btn btn-primary" id="login">确认</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

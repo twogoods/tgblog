@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/x-icon" href="/images/face.ico" media="screen" />
+	<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/stylesheets/tg_home.css"/>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/animate.min.css"/>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap-switch.min.css"/>
+
+	<script type="text/javascript" src="/javascripts/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/javascripts/marked.min.js"></script>
+	<script type="text/javascript" src="/javascripts/tg_home.js"></script>
+	<script type="text/javascript" src="/javascripts/bootstrap-switch.min.js"></script>
+	<title>博客</title>
+</head>
+<body>
+	<!-- 导航条 -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">Twogoods</a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">主页<span class="sr-only">(current)</span></a></li>
+					<li><a href="#" id="high">high一下</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">友情链接 <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="http://www.zjut.edu.cn/" target="_Blank">工大官网</a></li>
+							<li><a href="http://www.ie.zjut.edu.cn/xgb/index.html" target="_Blank">学工网</a></li>
+						</ul>
+					</li>
+				</ul>
+				<% if (user=="") { %>
+				<form class="navbar-form navbar-right" role="search">
+					<a class="btn btn-primary" href="/signin.html?/users/<%= userinfo.uid %>" role="button">登陆</a>
+				</form>
+				<% } else { %>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="/users/center/<%= user.uid %>"><%= user.name %></a></li>
+					<li><a href="/logout">退出</a></li>
+				</ul>
+				<% } %>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-3 userinfo">
+				<a href="#" class="center-block">
+					<img src=<%= userinfo.headurl %>  class="img-circle center-block"/>
+				</a>
+				<br>
+				<p class="hidden" id="uid"><%= userinfo.uid %></p>
+				<p class="center"><%= userinfo.name %></p>
+				<p class="center"><%= userinfo.mark %></p>
+				<div class="tag">
+					<p class="center-block">
+						<% for(var i=0;i<userinfo.tags.length;i++){ %>
+						<% if(i%5==0){ %>
+						<span class="label label-success"><%= userinfo.tags[i] %></span>
+						<% }else if(i%5==1){ %>
+						<span class="label label-primary"><%= userinfo.tags[i] %></span>
+						<% }else if(i%5==2){ %>
+						<span class="label label-info"><%= userinfo.tags[i] %></span>
+						<% }else if(i%5==3){ %>
+						<span class="label label-warning"><%= userinfo.tags[i] %></span>
+						<% }else{ %>
+						<span class="label label-danger"><%= userinfo.tags[i] %></span>
+						<% } %>
+						<% } %>
+					</p>
+				</div>
+			</div>
+
+			<div class="col-sm-8 col-sm-offset-4 maininfo">
+				<div class="switch">
+					<input type="checkbox" data-size="mini" data-on-text="阅读" data-off-text="编辑" id="switchmode" checked disabled />
+				</div>
+				<% if (have) { %>
+				<% articles.forEach(function(article){ %>
+				<div class="row">
+					<div class="col-sm-12 blogtext" id="<%= article.pid %>">
+						<%- article.content %>
+						<span class="time"><%= article.time%> </span>
+					</div>
+				</div>
+				<br>
+				<% }) %>
+				<% } else { %>
+				<div class="row">
+					<div class="col-sm-12 blogtext">
+						<h3>这家伙还没有文章哦~</h3>
+					</div>
+				</div>
+				<% } %>
+
+			</div>
+		</div><!-- /.row -->
+
+	</div><!-- /.container -->
+	<footer class="home-footer">
+		<p>Blog template built for <a href="http://www.bootcss.com" target="_Blank">Bootstrap</a> by <a href="http://twogoods.github.io" target="_Blank">twogoods</a>.</p>
+	</footer>
+
+</body>
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?f0a4060424286c7402bf3fde8b8f3e86";
+		var s = document.getElementsByTagName("script")[0]; 
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+</html>

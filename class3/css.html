@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="styles/mycss.css" />
+
+	<style type="text/css">
+		* {
+			/*
+			margin: 0px;
+			padding: 0;
+			*/
+		}
+		body
+		{ 
+			background-image:url('images/image.png');
+			background-repeat:no-repeat;
+			background-position:50% 50%;
+		}
+
+		h2.pos_left{
+			position:relative;
+			left:-20px
+		}
+		h2.pos_right{
+			position:relative;
+			left:20px
+		}
+		/* 派生选择器  指定 li 中<strong>元素内的样式 */
+		li strong {
+			font-style: italic;
+			color: green;
+			font-weight: normal;
+		}
+		p {
+			text-indent: 0em;/*缩进*/
+			padding-left: 50em;
+			background-color: gray;
+			padding: 2px;
+			display: block;
+		}
+		/* id选择器 #加id*/
+		#idsel{
+			color: blue;
+		}
+		#div1 p {
+			font-size: 30px;
+		}
+		/* 类选择器 .开头 也可以这样用：.center p 选择.center元素里的p元素    p.center选择 p元素并且是center类*/
+		.center {
+			text-align: center
+		}
+		/*属性选择器  有type=text 属性时则。。。*/
+		input[type="text"]{
+			width:400px;
+			display:block;
+			margin-bottom:10px;
+			font-family: Verdana, Arial;
+		}
+		a {
+			text-decoration: none;
+		}
+	</style>
+</head>
+
+<body>
+	<h2>标题</h2>
+	<p id="idsel">id选择器</p>
+	<p><strong>haha</strong></p>
+	<div id="div1"><p class="center">段落居中</p></div>
+	<li><strong>我是斜体字。这是因为 strong 元素位于 li 元素内。</strong></li>
+	<li>我是正常的字体。</li>
+	<hr/>
+	<a href="">点我</a>
+	<form name="input" action="" method="get">
+		<input type="text" name="Name">
+		<input type="text" name="Name">
+		<input type="button" value="Example Button">
+	</form>
+</body>
+</html>

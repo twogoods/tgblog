@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/x-icon" href="/images/face.ico" media="screen" />
+	<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/stylesheets/tg_home.css"/>
+	<link rel="stylesheet" type="text/css" href="/tagEditor/jquery.tag-editor.css"/>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/animate.min.css"/>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap-switch.min.css"/>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/sweetalert.css"/>
+
+	<script type="text/javascript" src="/javascripts/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/tagEditor/jquery.caret.min.js"></script>
+	<script type="text/javascript" src="/tagEditor/jquery.tag-editor.min.js"></script>
+	<script type="text/javascript" src="/javascripts/marked.min.js"></script>
+	<script type="text/javascript" src="/javascripts/sweetalert.min.js"></script>
+	<script type="text/javascript" src="/javascripts/tg_home.js"></script>
+	<script type="text/javascript" src="/javascripts/bootstrap-switch.min.js"></script>
+	<title>个人中心</title>
+</head>
+<body>
+	<!-- 导航条 -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">Twogoods</a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">主页<span class="sr-only">(current)</span></a></li>
+					<li><a href="#" id="high">high一下</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">友情链接 <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="http://www.zjut.edu.cn/" target="_Blank">工大官网</a></li>
+							<li><a href="http://www.ie.zjut.edu.cn/xgb/index.html" target="_Blank">学工网</a></li>
+						</ul>
+					</li>
+					<li><a href="#" data-toggle="modal" data-target="#helpWin">帮助</a></li>
+				</ul>
+				<% if (user=="") { %>
+				<form class="navbar-form navbar-right" role="search">
+					<a class="btn btn-primary" href="/signin.html?/users/info/<%= user.uid %>" role="button">登陆</a>
+				</form>
+				<% } else { %>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="/users/center/<%= user.uid %>"><%= user.name %></a></li>
+					<li><a href="/logout">退出</a></li>
+				</ul>
+				<% } %>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-3 userinfo">
+				<a href="#" class="center-block updateinfo">
+					<img src=<%= user.headurl %>  class="img-circle center-block"
+					data-toggle="tooltip" data-placement="right" title="修改"/>
+				</a>
+				<br>
+				<p class="hidden" id="uid"><%= user.uid %></p>
+				<p class="center"><%= user.name %></p>
+				<p class="center"><%= user.mark %></p>
+				<hr>
+				<ol class="list-unstyled">
+					<li><a href="#" class="center-block" data-toggle="modal" data-target="#passwordWin">修改密码</a></li>
+				</ol>
+				<div class="tag">
+					<p class="center-block">
+						<% for(var i=0;i<user.tags.length;i++){ %>
+						<% if(i%5==0){ %>
+						<span class="label label-success"><%= user.tags[i] %></span>
+						<% }else if(i%5==1){ %>
+						<span class="label label-primary"><%= user.tags[i] %></span>
+						<% }else if(i%5==2){ %>
+						<span class="label label-info"><%= user.tags[i] %></span>
+						<% }else if(i%5==3){ %>
+						<span class="label label-warning"><%= user.tags[i] %></span>
+						<% }else{ %>
+						<span class="label label-danger"><%= user.tags[i] %></span>
+						<% } %>
+						<% } %>
+					</p>
+					<!--
+					<textarea class="tagEditor"></textarea>
+				-->				
+			</div>
+		</div>
+
+		<div class="col-sm-8 col-sm-offset-4 maininfo">
+			<div class="switch">
+				<input type="checkbox" data-size="mini" data-on-text="阅读" data-off-text="编辑" id="switchmode" checked />
+			</div>
+
+			<div class="edit">
+				<div class="row">
+					<textarea class="col-sm-12 textwrite" placeholder="请使用markdown语法，具体参看导航栏帮助。。。"></textarea>
+					<p class="hidden" id="editflag">new</p>
+					<a class="btn btn-primary savebtn" href="#" role="button">保存</a>
+					<a class="btn btn-success viewbtn" href="#" role="button">预览</a>
+						<!--
+						<button type="submit" class="btn btn-success viewbtn">预览</button>
+						<button type="submit" class="btn btn-primary savebtn">保存</button>
+					-->
+				</div>
+				<div class="row">
+					<div class="col-sm-12 textview">
+					</div>
+				</div>
+			</div>
+
+			<div class="read">
+				<% if (have) { %>
+				<% articles.forEach(function(article){ %>
+				<div class="row">
+					<div class="col-sm-12 blogtext">
+						<%- article.content %>
+						<span class="time"><%= article.time%> </span>
+						<hr>
+						<a href="#" class="operatinarticle doEdit" id="<%= article.pid %>">编辑</a>
+						<a href="#" values="" class="operatinarticle doDelete" id="<%= article.pid %>">删除</a>
+					</div>
+				</div>
+				<br>
+				<% }) %>
+
+				<% } else { %>
+				<div class="row">
+					<div class="col-sm-12 blogtext">
+						<h3>你还没有文章哦~</h3>
+					</div>
+				</div>
+				<% } %>
+			</div>
+		</div>
+	</div><!-- /.row -->
+
+</div><!-- /.container -->
+<footer class="home-footer">
+	<p>Blog template built for <a href="http://www.bootcss.com" target="_Blank">Bootstrap</a> by <a href="http://twogoods.github.io" target="_Blank">twogoods</a>.</p>
+</footer>
+
+
+
+
+<!--修改密码框-->
+<div class="modal fade" id="passwordWin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">修改密码</h4>
+			</div>
+			<div class="modal-body">
+				<div class="alert alert-danger alert-dismissible" role="alert" id="passwordalert">
+					<span id="passwordWarning"></span>
+				</div>
+				<!--表单-->
+				<form class="form-horizontal" role="form">
+					<div class="form-group">
+						<label for="firstname" class="col-sm-2 control-label">原密码</label>
+						<div class="col-sm-6">
+							<input type="password" class="form-control" id="prepassword" name="prepassword" placeholder="请输入原密码"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="lastname" class="col-sm-2 control-label">新密码</label>
+						<div class="col-sm-6">
+							<input type="password" class="form-control" id="newpassword" name="newpassword" placeholder="请输入密码"/>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				<button type="submit" class="btn btn-primary" id="updatePassword">确认</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!--修改个人信息框-->
+<div class="modal fade" id="userInfoWin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">修改个人信息</h4>
+			</div>
+			<div class="modal-body">
+				<div class="alert alert-danger alert-dismissible" role="alert" id="infoalert">
+					<span id="infoWarningContext"></span>
+				</div>
+				<!--表单-->
+				<form class="form-horizontal" role="form">
+					<div class="form-group">
+						<label for="firstname" class="col-sm-2 control-label">头像链接</label>
+						<div class="col-sm-6">
+							<input type="url" class="form-control" id="head" name="headurl" placeholder="请以http://开头"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="lastname" class="col-sm-2 control-label">个人简介</label>
+						<div class="col-sm-6">
+							<textarea class="form-control" id="mark" name="mark" placeholder="请输入简介"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="lastname" class="col-sm-2 control-label">个人标签</label>
+						<div class="col-sm-6">
+							<textarea class="form-control tagEditor" id="tags" name="tags"></textarea>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				<button type="submit" class="btn btn-primary" id="updateInfo">确认</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--帮助信息-->
+<div class="modal fade" id="helpWin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">帮助信息</h4>
+			</div>
+			<div class="modal-body">
+				<ol>
+					<li>文章需使用markdown语法写作，入门看<a href="http://www.jianshu.com/p/1e402922ee32/" target="_Blank">这里</a>,深入当然是<a href="http://www.appinn.com/markdown/basic.html" target="_Blank">文档</a>啦~  </li>
+					<li>小站并不提供文件存储，更换头像请给我一个链有图片的链接，这里有一个<a href="http://tuchuang.org/" target="_Blank">图床</a>工具，将图片上传就能得到图片的链接了。</li>
+				</ol>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-primary" data-dismiss="modal">知道了</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?f0a4060424286c7402bf3fde8b8f3e86";
+		var s = document.getElementsByTagName("script")[0]; 
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+</html>

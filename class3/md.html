@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Marked in the browser</title>
+  <script src="scripts/marked.min.js"></script>
+</head>
+<body>
+  <div id="content"></div>
+  <script>
+    document.getElementById('content').innerHTML =
+      marked('# Marked in browser\n\n ### Rendered by **marked**.\n\n- [haha](https://github.com/chjj/marked/)\n\n`public void test('description', numberexpected, function() {
+        
+      });`');
+  </script>
+</body>
+</html>

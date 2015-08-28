@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="stylesheet" type="text/css" href="styles/simditor.css" />
+
+	<script type="text/javascript" src="scripts/jquery.min.js"></script>
+	<script type="text/javascript" src="scripts/module.js"></script>
+	<script type="text/javascript" src="scripts/hotkeys.js"></script>
+	<script type="text/javascript" src="scripts/uploader.js"></script>
+	<script type="text/javascript" src="scripts/simditor.js"></script>
+
+</head>
+
+<body>
+	<textarea id="editor" placeholder="这里输入内容" autofocus></textarea>
+	<button id="ok">确定</button>
+	<p id="cont"></p>
+	<script>
+	var editor = new Simditor({
+		textarea : $('#editor'),
+		placeholder: '',
+		defaultImage: 'images/image.png',
+		params: {},
+		upload: false,
+		tabIndent: true,
+		toolbar: ['title','bold','italic','underline','strikethrough','color','ol',
+		'ul','blockquote','code','table','link','image','hr','indent','outdent','alignment'],
+		toolbarFloat: true,
+		toolbarFloatOffset: 0,
+		toolbarHidden: false,
+		pasteImage: false,
+	});
+
+
+	$("#ok").click(function(){
+		var content=editor.getValue();
+		console.log(content);
+		$("#cont").append(content);
+		//$("#editor").hide();
+		editor.destroy();
+	});
+
+
+	</script>
+</body>
+</html>
