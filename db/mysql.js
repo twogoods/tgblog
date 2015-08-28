@@ -10,8 +10,8 @@ var pool  = mysql.createPool({
       // coding
       connectionLimit : 40,
       host     : '10.9.1.188',
-      user     : 'inPYcOlyfId0F1fN',
-      password : 'DMA82pyOjUbXGdr3',
+      user     : '7XQvAvhORggnv59M',
+      password : 'X8feYNDXePftoMor',
       database : 'cf_ff7f458e_1b2d_405b_a6a4_e2ab3549e9a4'
 });
 
