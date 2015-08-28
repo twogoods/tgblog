@@ -44,7 +44,7 @@ $(function () {
 			$('#passwordalert').show();
 			$('#passwordWarning').text("新密码不能为空");
 		}else{
-			var param={prepassword:prepassword,newpassword:newpassword};
+			var param={prepassword:prepassword,newpassword:newpassword}
 			$.ajax({
 				type: "post",
 				url: "/users/"+uid+"/updatePassword",

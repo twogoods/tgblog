@@ -8,10 +8,10 @@
  Source Database       : class3
 
  Target Server Type    : MySQL
- Target Server Version : 50625
+ Target Server Version : 50100
  File Encoding         : utf-8
 
- Date: 08/28/2015 16:52:28 PM
+ Date: 08/28/2015 16:34:08 PM
 */
 
 SET NAMES utf8;

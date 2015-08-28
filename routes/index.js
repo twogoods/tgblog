@@ -8,6 +8,7 @@ router.get('/', function(req, res, next) {
 
 	mainService.getInfoForIndex(function(err,result){
 		if(err) throw err;
+		console.log(req.session.user);
 		// session 文档  https://github.com/expressjs/session
 		if(!req.session.user){
 			res.locals.user = "";

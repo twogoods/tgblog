@@ -29,10 +29,7 @@ userService.getArticleByUid = function(uid,pid,callback){
 }
 
 userService.addArticle = function(uid,content,callback){
-	//coding 
-	var now =new Date();
-	now.setHours(now.getHours() + 8);
-	var article  = {uid: uid, content: content,time : now};
+	var article  = {uid: uid, content: content,time :new Date()};
 	dbutil.sendSql('insert into blogarticles set ?',article,function(err,result){
 		if(1==result.affectedRows){
 			callback(err,{code:1});
