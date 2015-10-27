@@ -4,6 +4,14 @@ $(function () {
 	$("#passwordTip").popover();
 	$("#switchmode").bootstrapSwitch();
 
+	var mditor = new Mditor(".textwrite",{
+	    height:450,
+	    width:780,
+	    fixedHeight:false
+	});
+	mditor.openPreview();
+
+
 	$("#high").click(function(){
 		$('*').addClass('animated tada');
 		setTimeout(function(){
@@ -24,9 +32,13 @@ $(function () {
 			}
 			$(".read").show();
 			$(".edit").hide();
+			mditor.openPreview();
+
 		}else{
 			$(".edit").show();
 			$(".read").hide();
+			mditor.openPreview();
+
 		}
 	});
 
