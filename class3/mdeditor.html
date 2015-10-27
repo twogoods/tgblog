@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>mditor</title>
+	<link rel="stylesheet" href="mditor/css/mditor.min.css" />
+	<!--
+	-->
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
+
+	<script type="text/javascript" src="scripts/jquery.min.js"></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+	<style>
+	</style>
+</head>
+
+<body>
+			<!--
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3">
+				<p class="center">绝对的体育迷，你可以和我聊梅西C罗也可以跟我说科比詹姆斯，当然你们硬是要和我聊国足（←_←）的话，我还是会原谅你们的哈</p>
+			</div>
+
+			<div class="col-sm-8">
+				
+			</div>
+		</div>
+
+	</div>
+			-->
+
+	<textarea class="col-sm-12 textwrite">
+									## 只求极致
+				[ **M** ] arkdown + E [ **ditor** ] = **Mditor**    
+				Mditor 是一个简洁、易于集成、方便扩展、期望舒服的编写 markdown 的编辑器，仅此而已...  
+				体验: 
+				## 浏览器端
+				##### 第一步:
+				引入 Mditor 样式文件  
+				##### 第二步:
+				</textarea>
+
+	<script type="text/javascript" src="mditor/js/mditor.js"/></script>
+	<script>
+		var mditor = new Mditor(".textwrite",{
+			height:400,
+			fixedHeight:false
+		});
+	</script>
+</body>
+
+</html>

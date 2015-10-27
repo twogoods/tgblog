@@ -11,6 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="/tagEditor/jquery.tag-editor.css"/>
 	<link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap-switch.min.css"/>
 	<link rel="stylesheet" type="text/css" href="/stylesheets/sweetalert.css"/>
+	<link rel="stylesheet" type="text/css" href="/mditor/css/mditor.min.css"/>
 
 	<script type="text/javascript" src="/javascripts/jquery-2.1.4.js"></script>
 	<script type="text/javascript" src="/tagEditor/jquery.tag-editor.min.js"></script>
@@ -20,6 +21,7 @@
 	<script type="text/javascript" src="/javascripts/sweetalert.min.js"></script>
 	<script type="text/javascript" src="/javascripts/tg_home.js"></script>
 	<script type="text/javascript" src="/javascripts/bootstrap-switch.min.js"></script>
+	
 	<title>个人中心</title>
 </head>
 <body>
@@ -104,21 +106,12 @@
 			<div class="switch">
 				<input type="checkbox" data-size="mini" data-on-text="阅读" data-off-text="编辑" id="switchmode" checked />
 			</div>
-
+			<br>
 			<div class="edit">
 				<div class="row">
 					<textarea class="col-sm-12 textwrite" placeholder="请使用markdown语法，具体参看导航栏帮助。。。"></textarea>
 					<p class="hidden" id="editflag">new</p>
 					<a class="btn btn-primary savebtn" href="#" role="button">保存</a>
-					<a class="btn btn-success viewbtn" href="#" role="button">预览</a>
-						<!--
-						<button type="submit" class="btn btn-success viewbtn">预览</button>
-						<button type="submit" class="btn btn-primary savebtn">保存</button>
-					-->
-				</div>
-				<div class="row">
-					<div class="col-sm-12 textview">
-					</div>
 				</div>
 			</div>
 
@@ -253,7 +246,7 @@
 		</div>
 	</div>
 </div>
-
+<script type="text/javascript" src="/mditor/js/mditor.min.js"></script>
 </body>
 <script>
 	var _hmt = _hmt || [];

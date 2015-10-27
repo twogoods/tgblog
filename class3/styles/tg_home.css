@@ -7,9 +7,11 @@ body {
 }
 
 .container{
+	/*
 	position: relative;
 	height: auto;
 	height: 100%;
+	*/
 }
 .userinfo{
 	top:100px;
@@ -36,10 +38,11 @@ body {
 	margin-left: 1%;
 	*/
 }
+/*
 .textwrite{
 	height: 500px;
 	padding: 10px;
-}
+}*/
 .textview{
 	background-color: #ECECEC;
 	border-radius:18px;

@@ -1,6 +1,12 @@
 $(function () {
 	$('[data-toggle="tooltip"]').tooltip();
 
+		var mditor = new Mditor(".textwrite",{
+	    height:500,
+	    fixedHeight:false
+	});
+	mditor.openPreview();
+
 	$('.tag').tagEditor({
 		initialTags: ['Hello', 'World', 'Example', 'Tags'],
 		delimiter: ', ', /* space and comma */
