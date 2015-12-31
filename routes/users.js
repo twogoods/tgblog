@@ -30,7 +30,11 @@ router.get('/:uid', function(req, res, next) {
 			if(articles.length==0||articles==null){
 				res.render('main',{userinfo:userinfo[0],have:false,totalPage:1,currentPage:1});
 			}else{
-				res.render('main',{userinfo:userinfo[0],have:true,articles:articles,totalPage:totalPage,currentPage:pageNo});
+				if(pageNo>totalPage){
+					res.render('main',{userinfo:userinfo[0],have:true,articles:articles,totalPage:totalPage,currentPage:totalPage});
+				}else{
+					res.render('main',{userinfo:userinfo[0],have:true,articles:articles,totalPage:totalPage,currentPage:pageNo});
+				}
 			}
 		});
 	});
@@ -72,7 +76,11 @@ router.get('/center/:uid', function(req, res, next) {
 		if(articles.length==0||articles==null){
 			res.render('home',{have:false,totalPage:1,currentPage:1});
 		}else{
-			res.render('home',{have:true,articles:articles,totalPage:totalPage,currentPage:pageNo});
+			if(pageNo>totalPage){
+				res.render('home',{have:true,articles:articles,totalPage:totalPage,currentPage:totalPage});
+			}else{
+				res.render('home',{have:true,articles:articles,totalPage:totalPage,currentPage:pageNo});
+			}
 		}
 	});
 });

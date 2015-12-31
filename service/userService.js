@@ -16,7 +16,7 @@ userService.getArticlesByUid = function(uid,pageNo,callback){
 	var pageSize=5;
 	dbutil.sendSql('select count(*) as count from blogarticles where uid =?',[uid],function(err,num){
 		var total=num[0].count;
-		lastPage=parseInt(total/pageSize)+1;
+		lastPage=parseInt((total-1)/pageSize)+1;
 		if(pageNo>lastPage){
 			pageNo=lastPage;
 		}
