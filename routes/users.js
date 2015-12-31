@@ -5,13 +5,17 @@ var userService = require('../service/userService.js');
 //得到用户文章用于个人主页展示
 router.get('/:uid', function(req, res, next) {
 	var uid=req.params.uid;
+	var pageNo=req.query.pageNo;
 	if(!req.session.user){
 		res.locals.user = "";
 	}else{
 		res.locals.user = req.session.user;
 	}
+	if(!parseInt(pageNo)||pageNo<1){
+		pageNo=1;
+	}
 	userService.getUserInfo(uid,function(err,userinfo){
-		userService.getArticlesByUid(uid,function(err,articles){
+		userService.getArticlesByUid(uid,pageNo,function(err,articles,totalPage){
 			if(userinfo[0].tags!=null){
 				var tagString=userinfo[0].tags.trim();
 				if(tagString!=""){
@@ -24,9 +28,9 @@ router.get('/:uid', function(req, res, next) {
 				userinfo[0].tags=[];
 			}
 			if(articles.length==0||articles==null){
-				res.render('main',{userinfo:userinfo[0],have:false});
+				res.render('main',{userinfo:userinfo[0],have:false,totalPage:1,currentPage:1});
 			}else{
-				res.render('main',{userinfo:userinfo[0],have:true,articles:articles});
+				res.render('main',{userinfo:userinfo[0],have:true,articles:articles,totalPage:totalPage,currentPage:pageNo});
 			}
 		});
 	});
@@ -54,16 +58,21 @@ router.get('/simpleInfo/:uid', function(req, res, next) {
 //用户个人中心
 router.get('/center/:uid', function(req, res, next) {
 	var uid=req.params.uid;
+	var pageNo=req.query.pageNo;
 	if(!req.session.user){
 		res.locals.user = "";
 	}else{
 		res.locals.user = req.session.user;
 	}
-	userService.getArticlesByUid(uid,function(err,result){
-		if(result.length==0||result==null){
-			res.render('home',{have:false});
+	if(!parseInt(pageNo)||pageNo<1){
+		pageNo=1;
+	}
+
+	userService.getArticlesByUid(uid,pageNo,function(err,articles,totalPage){
+		if(articles.length==0||articles==null){
+			res.render('home',{have:false,totalPage:1,currentPage:1});
 		}else{
-			res.render('home',{have:true,articles:result});
+			res.render('home',{have:true,articles:articles,totalPage:totalPage,currentPage:pageNo});
 		}
 	});
 });

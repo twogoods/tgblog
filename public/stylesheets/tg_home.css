@@ -85,6 +85,11 @@ body {
 	border-radius:8px;
 	max-width: 800px;
 }
+.pagination{
+	margin-top: -2px;
+	margin-left: -13px;
+	margin-bottom: 20px;
+}
 .textview{
 	background-color: #fefefe;
 	border-radius:18px;

@@ -12,13 +12,22 @@ userService.getUserInfo = function(uid,callback){
 	});
 }
 
-userService.getArticlesByUid = function(uid,callback){
-	dbutil.sendSql('select * from blogarticles where uid =? order by time desc',[uid],function(err,articles){
-		articles.forEach(function(article){
-			article.content=marked(article.content);
-			article.time=tgutil.formatDate(article.time);
+userService.getArticlesByUid = function(uid,pageNo,callback){
+	var pageSize=5;
+	dbutil.sendSql('select count(*) as count from blogarticles where uid =?',[uid],function(err,num){
+		var total=num[0].count;
+		lastPage=parseInt(total/pageSize)+1;
+		if(pageNo>lastPage){
+			pageNo=lastPage;
+		}
+		var offset=(pageNo-1)*pageSize;
+		dbutil.sendSql('select * from blogarticles where uid =? order by time desc limit ?,5',[uid,offset],function(err,articles){
+			articles.forEach(function(article){
+				article.content=marked(article.content);
+				article.time=tgutil.formatDate(article.time);
+			});
+			callback(err,articles,lastPage);
 		});
-		callback(err,articles);
 	});
 }
 

@@ -4,19 +4,21 @@ $(function () {
 	$("#passwordTip").popover();
 	$("#switchmode").bootstrapSwitch();
 
+
+
 	var mditor = new Mditor(".textwrite",{
 	    height:450,
 	    width:780,
 	    fixedHeight:false
 	});
 	mditor.openPreview();
+
 	$("#high").click(function(){
 		$('*').addClass('animated tada');
 		setTimeout(function(){
 			$('*').removeClass('animated tada');
 		},4000);
 	});
-
 
 	var uid=$("#uid").text();
 

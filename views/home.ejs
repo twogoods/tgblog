@@ -21,6 +21,7 @@
 	<script type="text/javascript" src="/javascripts/sweetalert.min.js"></script>
 	<script type="text/javascript" src="/javascripts/tg_home.js"></script>
 	<script type="text/javascript" src="/javascripts/bootstrap-switch.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jqPaginator.js"></script>
 	
 	<title>个人中心</title>
 </head>
@@ -129,7 +130,7 @@
 				</div>
 				<br>
 				<% }) %>
-
+				<ul class="pagination" id="pagination"></ul>
 				<% } else { %>
 				<div class="row">
 					<div class="col-sm-12 blogtext">
@@ -249,6 +250,26 @@
 <script type="text/javascript" src="/mditor/js/mditor.min.js"></script>
 </body>
 <script>
+
+	var totalPage='<%= totalPage %>';
+	var currentPage='<%= currentPage %>';
+	$.jqPaginator('#pagination', {
+        totalPages: parseInt(totalPage),
+        visiblePages: 5,
+        currentPage: parseInt(currentPage),
+        prev: '<li class="prev"><a href="javascript:;">上一页</a></li>',
+        next: '<li class="next"><a href="javascript:;">下一页</a></li>',
+        page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
+        onPageChange: function (num, type) {
+            if(type=="change"){
+            	var url=window.location.href.replace("#","").split("?");
+	            window.location=url[0]+"?pageNo="+num;
+	            return false;
+            }
+        }
+    });
+
+
 	var _hmt = _hmt || [];
 	(function() {
 		var hm = document.createElement("script");
