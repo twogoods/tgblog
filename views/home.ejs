@@ -5,22 +5,24 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" type="image/x-icon" href="/images/face.ico" media="screen" />
 	<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css" />
+
 	<link rel="stylesheet" type="text/css" href="/stylesheets/tg_home.css"/>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/animate.css"/>
 	<link rel="stylesheet" type="text/css" href="/tagEditor/jquery.tag-editor.css"/>
-	<link rel="stylesheet" type="text/css" href="/stylesheets/animate.min.css"/>
 	<link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap-switch.min.css"/>
 	<link rel="stylesheet" type="text/css" href="/stylesheets/sweetalert.css"/>
 	<link rel="stylesheet" type="text/css" href="/mditor/css/mditor.min.css"/>
 
-
-	<script type="text/javascript" src="/javascripts/jquery-2.1.4.min.js"></script>
-	<script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="/tagEditor/jquery.caret.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery-2.1.4.js"></script>
 	<script type="text/javascript" src="/tagEditor/jquery.tag-editor.min.js"></script>
+	<script type="text/javascript" src="/tagEditor/jquery.caret.min.js"></script>
+	<script type="text/javascript" src="/bootstrap/js/bootstrap.js"></script>
 	<script type="text/javascript" src="/javascripts/marked.min.js"></script>
 	<script type="text/javascript" src="/javascripts/sweetalert.min.js"></script>
 	<script type="text/javascript" src="/javascripts/tg_home.js"></script>
 	<script type="text/javascript" src="/javascripts/bootstrap-switch.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jqPaginator.js"></script>
+	
 	<title>个人中心</title>
 </head>
 <body>
@@ -263,10 +265,6 @@ O.push(A)
 					<textarea class="col-sm-12 textwrite" placeholder="请使用markdown语法，具体参看导航栏帮助。。。"></textarea>
 					<p class="hidden" id="editflag">new</p>
 					<a class="btn btn-primary savebtn" href="#" role="button">保存</a>
-						<!--
-						<button type="submit" class="btn btn-success viewbtn">预览</button>
-						<button type="submit" class="btn btn-primary savebtn">保存</button>
-					-->
 				</div>
 			</div>
 
@@ -284,7 +282,7 @@ O.push(A)
 				</div>
 				<br>
 				<% }) %>
-
+				<ul class="pagination" id="pagination"></ul>
 				<% } else { %>
 				<div class="row">
 					<div class="col-sm-12 blogtext">
@@ -404,6 +402,26 @@ O.push(A)
 <script type="text/javascript" src="/mditor/js/mditor.min.js"></script>
 </body>
 <script>
+
+	var totalPage='<%= totalPage %>';
+	var currentPage='<%= currentPage %>';
+	$.jqPaginator('#pagination', {
+        totalPages: parseInt(totalPage),
+        visiblePages: 5,
+        currentPage: parseInt(currentPage),
+        prev: '<li class="prev"><a href="javascript:;">上一页</a></li>',
+        next: '<li class="next"><a href="javascript:;">下一页</a></li>',
+        page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
+        onPageChange: function (num, type) {
+            if(type=="change"){
+            	var url=window.location.href.replace("#","").split("?");
+	            window.location=url[0]+"?pageNo="+num;
+	            return false;
+            }
+        }
+    });
+
+
 	var _hmt = _hmt || [];
 	(function() {
 		var hm = document.createElement("script");

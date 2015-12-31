@@ -1,6 +1,12 @@
 $(function () {
 	$('[data-toggle="tooltip"]').tooltip();
 
+		var mditor = new Mditor(".textwrite",{
+	    height:500,
+	    fixedHeight:false
+	});
+	mditor.openPreview();
+
 	$('.tag').tagEditor({
 		initialTags: ['Hello', 'World', 'Example', 'Tags'],
 		delimiter: ', ', /* space and comma */
@@ -24,5 +30,16 @@ $(function () {
 		$(".textview").html(html);
 	});
 
+	$.jqPaginator('#pagination', {
+        totalPages: 1,
+        visiblePages: 5,
+        currentPage: 1,
+        prev: '<li class="prev"><a href="javascript:;">上一页</a></li>',
+        next: '<li class="next"><a href="javascript:;">下一页</a></li>',
+        page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
+        onPageChange: function (num, type) {
+            console.log(num);
+        }
+    });
 
 })

@@ -12,13 +12,22 @@ userService.getUserInfo = function(uid,callback){
 	});
 }
 
-userService.getArticlesByUid = function(uid,callback){
-	dbutil.sendSql('select * from blogarticles where uid =? order by time desc',[uid],function(err,articles){
-		articles.forEach(function(article){
-			article.content=marked(article.content);
-			article.time=tgutil.formatDate(article.time);
+userService.getArticlesByUid = function(uid,pageNo,callback){
+	var pageSize=5;
+	dbutil.sendSql('select count(*) as count from blogarticles where uid =?',[uid],function(err,num){
+		var total=num[0].count;
+		lastPage=parseInt(total/pageSize)+1;
+		if(pageNo>lastPage){
+			pageNo=lastPage;
+		}
+		var offset=(pageNo-1)*pageSize;
+		dbutil.sendSql('select * from blogarticles where uid =? order by time desc limit ?,5',[uid,offset],function(err,articles){
+			articles.forEach(function(article){
+				article.content=marked(article.content);
+				article.time=tgutil.formatDate(article.time);
+			});
+			callback(err,articles,lastPage);
 		});
-		callback(err,articles);
 	});
 }
 
@@ -29,10 +38,7 @@ userService.getArticleByUid = function(uid,pid,callback){
 }
 
 userService.addArticle = function(uid,content,callback){
-	//coding 
-	var now =new Date();
-	now.setHours(now.getHours() + 8);
-	var article  = {uid: uid, content: content,time : now};
+	var article  = {uid: uid, content: content,time :new Date()};
 	dbutil.sendSql('insert into blogarticles set ?',article,function(err,result){
 		if(1==result.affectedRows){
 			callback(err,{code:1});

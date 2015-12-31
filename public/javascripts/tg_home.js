@@ -11,14 +11,12 @@ $(function () {
 	});
 	mditor.openPreview();
 
-
 	$("#high").click(function(){
 		$('*').addClass('animated tada');
 		setTimeout(function(){
 			$('*').removeClass('animated tada');
 		},4000);
 	});
-
 
 	var uid=$("#uid").text();
 
@@ -33,12 +31,10 @@ $(function () {
 			$(".read").show();
 			$(".edit").hide();
 			mditor.openPreview();
-
 		}else{
 			$(".edit").show();
 			$(".read").hide();
 			mditor.openPreview();
-
 		}
 	});
 
@@ -56,7 +52,7 @@ $(function () {
 			$('#passwordalert').show();
 			$('#passwordWarning').text("新密码不能为空");
 		}else{
-			var param={prepassword:prepassword,newpassword:newpassword};
+			var param={prepassword:prepassword,newpassword:newpassword}
 			$.ajax({
 				type: "post",
 				url: "/users/"+uid+"/updatePassword",
